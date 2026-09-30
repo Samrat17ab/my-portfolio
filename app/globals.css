@@ -1,0 +1,54 @@
+@import "tailwindcss";
+
+:root {
+  --color-base: #0b0f14;
+  --color-base-raised: #10161d;
+  --color-glacier: #7fb8c4;
+  --color-marigold: #e8a33d;
+  --color-line: rgba(255, 255, 255, 0.08);
+  --font-display: var(--font-anton);
+  --font-body: var(--font-inter);
+}
+
+@theme inline {
+  --color-base: var(--color-base);
+  --color-base-raised: var(--color-base-raised);
+  --color-glacier: var(--color-glacier);
+  --color-marigold: var(--color-marigold);
+  --color-line: var(--color-line);
+  --font-display: var(--font-display);
+  --font-sans: var(--font-body);
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-base);
+  color: rgba(255, 255, 255, 0.92);
+  font-family: var(--font-body);
+}
+
+.font-display {
+  font-family: var(--font-display);
+  letter-spacing: 0.01em;
+}
+
+::selection {
+  background: var(--color-marigold);
+  color: var(--color-base);
+}
+
+/* Utility for anything that should snap to its end state for reduced-motion
+   users instead of relying on a JS branch in every component. */
+@media (prefers-reduced-motion: reduce) {
+  .motion-safe-only {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
