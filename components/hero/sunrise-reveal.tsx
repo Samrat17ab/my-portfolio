@@ -25,7 +25,7 @@ const VIEW_H = 900;
 const TEAR_SEGMENTS = 26;
 
 const NAME = "SAMRAT LAMSAL";
-const TAGLINE = "Product — Khalti by IME · KIIT '27";
+const TAGLINE = "Product — KIIT '27";
 const WELCOME_WORDS = ["Welcome", "to", "my", "portfolio."];
 
 function useRidgePath(seed: number, baseline: number, amplitude: number, points: number) {
