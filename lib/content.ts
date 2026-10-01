@@ -295,5 +295,6 @@ export const certifications: Certification[] = [
 export const contact = {
   email: "lamsalsamrat831@gmail.com",
   linkedin: "https://linkedin.com/in/samrat-lamsal",
+  github: "https://github.com/Samrat17ab",
   resumeHref: "/resume.pdf",
 };

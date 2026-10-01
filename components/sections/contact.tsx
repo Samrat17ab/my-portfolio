@@ -44,6 +44,17 @@ export function Contact() {
           </Magnetic>
           <Magnetic>
             <a
+              href={contact.github}
+              target="_blank"
+              rel="noreferrer"
+              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 transition-colors hover:border-glacier/50 hover:text-glacier"
+            >
+              <ExternalLink className="h-4 w-4" />
+              GitHub
+            </a>
+          </Magnetic>
+          <Magnetic>
+            <a
               href={contact.resumeHref}
               download
               className="inline-flex items-center gap-2 rounded-full bg-marigold px-6 py-3 text-sm font-medium text-base transition-transform hover:scale-[1.02]"
