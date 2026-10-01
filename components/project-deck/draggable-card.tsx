@@ -6,15 +6,25 @@ import { motion, useMotionValue, useSpring } from "motion/react";
 
 import type { Project } from "@/lib/content";
 import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
 
 interface DraggableCardProps {
   project: Project;
   initial: { x: number; y: number; rotate: number };
   zIndex: number;
   onActivate: () => void;
+  constraintsRef: React.RefObject<HTMLDivElement | null>;
+  compact: boolean;
 }
 
-export function DraggableCard({ project, initial, zIndex, onActivate }: DraggableCardProps) {
+export function DraggableCard({
+  project,
+  initial,
+  zIndex,
+  onActivate,
+  constraintsRef,
+  compact,
+}: DraggableCardProps) {
   const router = useRouter();
   const pointerDown = React.useRef<{ x: number; y: number } | null>(null);
 
@@ -53,10 +63,12 @@ export function DraggableCard({ project, initial, zIndex, onActivate }: Draggabl
 
   return (
     <motion.div
-      drag
-      dragElastic={0.5}
+      // Touch screens drag on x only, so vertical swipes over the deck still scroll the page.
+      drag={compact ? "x" : true}
+      dragConstraints={constraintsRef}
+      dragElastic={0.35}
       dragMomentum
-      dragTransition={{ bounceStiffness: 350, bounceDamping: 22 }}
+      dragTransition={{ bounceStiffness: 320, bounceDamping: 16 }}
       whileDrag={{ scale: 1.06 }}
       initial={false}
       style={{
@@ -71,9 +83,12 @@ export function DraggableCard({ project, initial, zIndex, onActivate }: Draggabl
       onMouseLeave={handleMouseLeave}
       onPointerDown={handlePointerDown}
       onPointerUp={handlePointerUp}
-      className="absolute left-1/2 top-1/2 w-64 -translate-x-1/2 -translate-y-1/2 cursor-grab touch-none select-none active:cursor-grabbing sm:w-72"
+      className={cn(
+        "absolute left-1/2 top-1/2 w-56 -translate-x-1/2 -translate-y-1/2 cursor-grab select-none active:cursor-grabbing sm:w-72",
+        compact ? "touch-pan-y" : "touch-none",
+      )}
     >
-      <div className="rounded-2xl border border-white/10 bg-ink-raised/90 p-6 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.65)]">
+      <div className="rounded-2xl border border-white/10 bg-ink-raised p-6 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.65)]">
         <Badge variant={project.accent === "marigold" ? "marigold" : "glacier"}>
           {project.kicker}
         </Badge>

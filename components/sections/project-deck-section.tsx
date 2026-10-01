@@ -4,7 +4,7 @@ import { ProjectDeck } from "@/components/project-deck/project-deck";
 
 export function ProjectDeckSection() {
   return (
-    <section id="work" className="py-28 sm:py-36">
+    <section id="work" className="overflow-x-clip py-28 sm:py-36">
       <div className="mx-auto max-w-4xl px-6">
         <Reveal className="text-center">
           <SectionHeading kicker="Selected work" title="Drag a project" align="center" />
