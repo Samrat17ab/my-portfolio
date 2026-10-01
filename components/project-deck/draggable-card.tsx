@@ -73,7 +73,7 @@ export function DraggableCard({ project, initial, zIndex, onActivate }: Draggabl
       onPointerUp={handlePointerUp}
       className="absolute left-1/2 top-1/2 w-64 -translate-x-1/2 -translate-y-1/2 cursor-grab touch-none select-none active:cursor-grabbing sm:w-72"
     >
-      <div className="rounded-2xl border border-white/10 bg-base-raised/90 p-6 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.65)]">
+      <div className="rounded-2xl border border-white/10 bg-ink-raised/90 p-6 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.65)]">
         <Badge variant={project.accent === "marigold" ? "marigold" : "glacier"}>
           {project.kicker}
         </Badge>

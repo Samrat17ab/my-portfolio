@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --color-base: #0b0f14;
-  --color-base-raised: #10161d;
+  --color-ink: #0b0f14;
+  --color-ink-raised: #10161d;
   --color-glacier: #7fb8c4;
   --color-marigold: #e8a33d;
   --color-line: rgba(255, 255, 255, 0.08);
@@ -11,8 +11,8 @@
 }
 
 @theme inline {
-  --color-base: var(--color-base);
-  --color-base-raised: var(--color-base-raised);
+  --color-ink: var(--color-ink);
+  --color-ink-raised: var(--color-ink-raised);
   --color-glacier: var(--color-glacier);
   --color-marigold: var(--color-marigold);
   --color-line: var(--color-line);
@@ -24,8 +24,13 @@ html {
   color-scheme: dark;
 }
 
+/* Keep anchored section headings clear of the fixed nav bar. */
+section[id] {
+  scroll-margin-top: 4.5rem;
+}
+
 body {
-  background: var(--color-base);
+  background: var(--color-ink);
   color: rgba(255, 255, 255, 0.92);
   font-family: var(--font-body);
 }
@@ -37,7 +42,7 @@ body {
 
 ::selection {
   background: var(--color-marigold);
-  color: var(--color-base);
+  color: var(--color-ink);
 }
 
 /* Utility for anything that should snap to its end state for reduced-motion

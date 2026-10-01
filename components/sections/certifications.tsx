@@ -76,7 +76,7 @@ function CertLightbox({ cert, onClose }: { cert: Certification | null; onClose: 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={transition}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-base/90 p-4 backdrop-blur-sm sm:p-8"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/90 p-4 backdrop-blur-sm sm:p-8"
           onClick={onClose}
           role="dialog"
           aria-modal="true"
@@ -87,14 +87,14 @@ function CertLightbox({ cert, onClose }: { cert: Certification | null; onClose: 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.98 }}
             transition={transition}
-            className="relative flex max-h-full w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-base-raised"
+            className="relative flex max-h-full w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-raised"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="absolute right-3 top-3 z-10 rounded-full bg-base/80 p-2 text-white/70 transition-colors hover:text-white"
+              className="absolute right-3 top-3 z-10 rounded-full bg-ink/80 p-2 text-white/70 transition-colors hover:text-white"
             >
               <X className="h-5 w-5" />
             </button>

@@ -1,8 +1,9 @@
-import { Mail, ExternalLink, Download } from "lucide-react";
+import { Mail, ExternalLink, FileText } from "lucide-react";
 
 import { contact } from "@/lib/content";
 import { Reveal } from "@/components/reveal";
 import { Magnetic } from "@/components/magnetic";
+import { ResumeButton } from "@/components/resume-viewer";
 
 export function Contact() {
   return (
@@ -54,14 +55,10 @@ export function Contact() {
             </a>
           </Magnetic>
           <Magnetic>
-            <a
-              href={contact.resumeHref}
-              download
-              className="inline-flex items-center gap-2 rounded-full bg-marigold px-6 py-3 text-sm font-medium text-base transition-transform hover:scale-[1.02]"
-            >
-              <Download className="h-4 w-4" />
+            <ResumeButton className="inline-flex items-center gap-2 rounded-full bg-marigold px-6 py-3 text-sm font-medium text-ink transition-transform hover:scale-[1.02]">
+              <FileText className="h-4 w-4" />
               Resume
-            </a>
+            </ResumeButton>
           </Magnetic>
         </Reveal>
 

@@ -100,7 +100,7 @@ export function SunriseReveal() {
       <div
         ref={stickyRef}
         onPointerMove={handlePointerMove}
-        className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-base"
+        className="sticky top-0 flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-ink"
       >
         <svg
           className="absolute inset-0 h-full w-full"
@@ -205,13 +205,13 @@ export function SunriseReveal() {
         <div className="relative z-10 h-full w-full select-none" aria-hidden>
           <motion.div
             style={{ x: leftX, rotate: leftRotate, clipPath: "inset(0 50% 0 0)" }}
-            className="absolute inset-0 flex flex-col items-center justify-center bg-base"
+            className="absolute inset-0 flex flex-col items-center justify-center bg-ink"
           >
             <TitleSheet nameOpacity={nameOpacity} />
           </motion.div>
           <motion.div
             style={{ x: rightX, rotate: rightRotate, clipPath: "inset(0 0 0 50%)" }}
-            className="absolute inset-0 flex flex-col items-center justify-center bg-base"
+            className="absolute inset-0 flex flex-col items-center justify-center bg-ink"
           >
             <TitleSheet nameOpacity={nameOpacity} />
           </motion.div>
@@ -277,7 +277,7 @@ function StaticHero() {
   const ridgeFront = useRidgePath(SEED + 3, VIEW_H * 0.86, 230, 13);
 
   return (
-    <section id="top" className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-base">
+    <section id="top" className="relative flex h-screen w-full flex-col items-center justify-center overflow-hidden bg-ink">
       <svg
         className="absolute inset-0 h-full w-full"
         viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}

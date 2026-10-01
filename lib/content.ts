@@ -25,8 +25,9 @@ export const projects: Project[] = [
     tagline: "A live anonymous mood-matching platform — built solo, end to end.",
     status: "live",
     summary: [
-      "Independently conceived, designed, built, and deployed end-to-end: product strategy, UX flow, full-stack build, and hosting. Real users can sign up today.",
-      "Anonymous peer-matching engine built on the Mood Meter framework (energy × pleasantness quadrants), dual matching modes, time-boxed 20-minute chats, and built-in safety escalation.",
+      "Conceived and launched a live anonymous peer-support platform as a solo builder — using Claude Code to build, and reviewing and correcting the generated code before every release. Real users can sign up today.",
+      "Designed a matching engine that pairs users based on their current mood for time-boxed chats, with a built-in crisis escalation path.",
+      "Built with TypeScript, React, Next.js, and Cloudflare Workers.",
     ],
     links: [{ label: "Visit mymoodly.space", href: "https://mymoodly.space" }],
     accent: "marigold",
@@ -47,10 +48,14 @@ export const projects: Project[] = [
   {
     slug: "cashkaro",
     title: "CashKaro",
-    kicker: "Case Study",
-    tagline: "Write-up in progress — the deck and interactive companion are live now.",
-    status: "in-progress",
-    summary: [],
+    kicker: "APM Intern Case Study",
+    tagline: "Product strategy assignment — a context-loss bug found in the purchase flow, and a fix for it.",
+    status: "case-study",
+    summary: [
+      "Found a context-loss bug in CashKaro's purchase flow through live-app testing.",
+      "Proposed Predictive Payment Intelligence: preference- and history-driven nudges, capped weekly to avoid fatigue.",
+      "Designed a power-user pilot measured on incremental tracked orders against a randomised control group.",
+    ],
     links: [
       { label: "View the deck (PDF)", href: "https://drive.google.com/file/d/1RKDhJ6bMgNzdSqLJ0YDrJFBgWB7d36QJ/view" },
       { label: "Open the interactive case study", href: "https://code-companion-hub-13.lovable.app/" },
@@ -85,23 +90,31 @@ export interface ExperienceBullet {
 }
 
 const khaltiBullets: ExperienceBullet[] = [
-    {
-      text: "Owned PRD lifecycle for Khalti's wallet-first card suite (Virtual Debit Card, Virtual Credit Card) — business requirements, risk controls, cross-functional sign-off workflows.",
-      stats: [{ label: "Virtual Debit Card active users", value: 300000, suffix: "+" }],
-    },
-    {
-      text: "Pitched and drove a search UX enhancement surfacing trending and recently used services, reducing click depth and expanding the active user base.",
-      stats: [{ label: "Search-section CTR", value: 300, prefix: "+", suffix: "%" }],
-    },
-    {
-      text: "Defined risk policy for AI-enabled auto-KYC via FacePass biometric verification, authoring liveness and spoof-detection thresholds that gate onboarding decisions.",
-      stats: [{ label: "Verifications processed daily", value: 5000, prefix: "~", suffix: "+" }],
-    },
-    {
-      text: "Authored 30+ PRDs in 3 months, translating regulatory, business, and user requirements into structured, audit-ready product documentation; drove regular user research, competitor analysis, and market research to inform prioritization.",
-      stats: [{ label: "PRDs authored in 3 months", value: 30, suffix: "+" }],
-    },
-  ];
+  {
+    text: "Owned the end-to-end PRD lifecycle for Khalti's wallet-first card suite (Physical Wallet Debit Card, Virtual Debit Card, Virtual Credit Card), from business requirements and risk controls to cross-functional sign-off. Authored 30+ PRDs in 3 months across regulatory, business, and user requirements.",
+    stats: [
+      { label: "Virtual Debit Card active users", value: 300000, suffix: "+" },
+      { label: "PRDs authored in 3 months", value: 30, suffix: "+" },
+    ],
+  },
+  {
+    text: "Established a prototype-first discovery process across Khalti Mall, Tourist Wallet, and Migrant Mode — converting BRDs into clickable prototypes built with Claude Code and reviewing them with senior stakeholders before PRD sign-off, surfacing edge cases and proposing solutions.",
+    stats: [
+      { label: "Tourist Wallet screens prototyped", value: 21 },
+      { label: "Edge cases surfaced", value: 16 },
+    ],
+  },
+  {
+    text: "Validated REST API contracts in Postman ahead of engineering handoff as standard practice, resolving integration and response-shape defects upstream to prevent mid-sprint blockers, and automated regression coverage across releases using Appium.",
+  },
+  {
+    text: "Contributed to two production AI features: defined the risk policy for FacePass biometric auto-KYC, authoring the liveness and spoof-detection thresholds that gate onboarding; and managed the RAG knowledge base behind Khalti's AI chatbot so users receive only verified information.",
+  },
+  {
+    text: "Spearheaded a search UX enhancement surfacing trending and recently used services, increasing search-section CTR and reducing user click depth.",
+    stats: [{ label: "Search-section CTR", value: 20, prefix: "+", suffix: "%" }],
+  },
+];
 
 export const khaltiExperience = {
   org: "Khalti by IME",
@@ -112,9 +125,9 @@ export const khaltiExperience = {
 
 const leadershipStats: StatItem[] = [
   { label: "Sponsors secured", value: 5 },
-  { label: "Raised (NPR)", value: 250000, prefix: "₹", suffix: "+" },
-  { label: "Tickets sold", value: 500, suffix: "+" },
-  { label: "Profit generated (NPR)", value: 85000, prefix: "₹", suffix: "+" },
+  { label: "Raised", value: 250000, prefix: "NPR ", suffix: "+" },
+  { label: "Tickets sold out", value: 500, suffix: "+" },
+  { label: "Profit generated", value: 85000, prefix: "NPR ", suffix: "+" },
 ];
 
 export const leadership = {
@@ -297,4 +310,5 @@ export const contact = {
   linkedin: "https://linkedin.com/in/samrat-lamsal",
   github: "https://github.com/Samrat17ab",
   resumeHref: "/resume.pdf",
+  resumePreview: "/resume-preview.png",
 };

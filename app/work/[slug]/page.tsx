@@ -62,7 +62,7 @@ export default async function WorkPage({ params }: WorkPageProps) {
         {project.status === "in-progress" ? (
           <Reveal
             delay={0.2}
-            className="mt-14 rounded-2xl border border-dashed border-white/15 bg-base-raised/40 p-8"
+            className="mt-14 rounded-2xl border border-dashed border-white/15 bg-ink-raised/40 p-8"
           >
             <p className="text-sm text-white/55">
               The full write-up for this case study is still in progress. In the meantime, the
@@ -93,13 +93,17 @@ export default async function WorkPage({ params }: WorkPageProps) {
             ))}
             {project.links.length > 0 && (
               <Reveal delay={0.2} className="flex flex-wrap gap-4 pt-4">
-                {project.links.map((link) => (
+                {project.links.map((link, linkIndex) => (
                   <Magnetic key={link.href}>
                     <a
                       href={link.href}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full bg-marigold px-5 py-2.5 text-sm font-medium text-base transition-transform hover:scale-[1.02]"
+                      className={
+                        linkIndex === 0
+                          ? "inline-flex items-center gap-2 rounded-full bg-marigold px-5 py-2.5 text-sm font-medium text-ink transition-transform hover:scale-[1.02]"
+                          : "inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-2.5 text-sm text-white/80 transition-colors hover:border-glacier/50 hover:text-glacier"
+                      }
                     >
                       {link.label}
                       <ArrowUpRight className="h-4 w-4" />

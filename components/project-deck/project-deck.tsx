@@ -36,7 +36,7 @@ export function ProjectDeck() {
           <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="rounded-2xl border border-white/10 bg-base-raised/90 p-6 transition-colors hover:border-glacier/40"
+            className="rounded-2xl border border-white/10 bg-ink-raised/90 p-6 transition-colors hover:border-glacier/40"
           >
             <Badge variant={project.accent === "marigold" ? "marigold" : "glacier"}>
               {project.kicker}

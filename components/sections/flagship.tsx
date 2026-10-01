@@ -46,7 +46,7 @@ export function Flagship() {
               href={mymoodly.links[0].href}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-marigold px-6 py-3 text-sm font-medium text-base transition-transform hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 rounded-full bg-marigold px-6 py-3 text-sm font-medium text-ink transition-transform hover:scale-[1.02]"
             >
               {mymoodly.links[0].label}
               <ArrowUpRight className="h-4 w-4" />
