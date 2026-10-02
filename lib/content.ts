@@ -98,21 +98,17 @@ const khaltiBullets: ExperienceBullet[] = [
     ],
   },
   {
+    text: "Spearheaded a search UX enhancement surfacing trending and recently used services, increasing search-section CTR and reducing user click depth.",
+    stats: [{ label: "Search-section CTR", value: 20, prefix: "+", suffix: "%" }],
+  },
+  {
     text: "Established a prototype-first discovery process across Khalti Mall, Tourist Wallet, and Migrant Mode — converting BRDs into clickable prototypes built with Claude Code and reviewing them with senior stakeholders before PRD sign-off, surfacing edge cases and proposing solutions.",
-    stats: [
-      { label: "Tourist Wallet screens prototyped", value: 21 },
-      { label: "Edge cases surfaced", value: 16 },
-    ],
   },
   {
     text: "Validated REST API contracts in Postman ahead of engineering handoff as standard practice, resolving integration and response-shape defects upstream to prevent mid-sprint blockers, and automated regression coverage across releases using Appium.",
   },
   {
     text: "Contributed to two production AI features: defined the risk policy for FacePass biometric auto-KYC, authoring the liveness and spoof-detection thresholds that gate onboarding; and managed the RAG knowledge base behind Khalti's AI chatbot so users receive only verified information.",
-  },
-  {
-    text: "Spearheaded a search UX enhancement surfacing trending and recently used services, increasing search-section CTR and reducing user click depth.",
-    stats: [{ label: "Search-section CTR", value: 20, prefix: "+", suffix: "%" }],
   },
 ];
 
