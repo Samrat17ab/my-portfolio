@@ -93,7 +93,7 @@ const khaltiBullets: ExperienceBullet[] = [
   {
     text: "Owned the end-to-end PRD lifecycle for Khalti's wallet-first card suite (Physical Wallet Debit Card, Virtual Debit Card, Virtual Credit Card), from business requirements and risk controls to cross-functional sign-off. Authored 30+ PRDs in 3 months across regulatory, business, and user requirements.",
     stats: [
-      { label: "Virtual Debit Card active users", value: 300000, suffix: "+" },
+      { label: "Virtual Debit Card active users", value: 50000, suffix: "+" },
       { label: "PRDs authored in 3 months", value: 30, suffix: "+" },
     ],
   },
