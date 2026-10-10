@@ -10,12 +10,12 @@ export function Contact() {
     <section id="contact" className="py-28 sm:py-40">
       <div className="mx-auto max-w-3xl px-6 text-center">
         <Reveal>
-          <span className="text-xs font-medium uppercase tracking-[0.3em] text-glacier">
+          <span className="text-xs font-medium uppercase tracking-[0.28em] text-ocean-deep">
             Get in touch
           </span>
         </Reveal>
         <Reveal delay={0.08}>
-          <h2 className="font-display mt-4 text-4xl uppercase leading-tight tracking-wide text-white sm:text-6xl">
+          <h2 className="font-display mt-4 text-4xl font-light leading-[1.1] text-heading sm:text-6xl">
             Let&apos;s build something
             <br />
             worth remembering.
@@ -26,7 +26,7 @@ export function Contact() {
           <Magnetic>
             <a
               href={`mailto:${contact.email}`}
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 transition-colors hover:border-glacier/50 hover:text-glacier"
+              className="inline-flex items-center gap-2 rounded-full border border-edge bg-surface px-6 py-3 text-sm text-heading shadow-soft backdrop-blur transition-all duration-[400ms] ease-out hover:-translate-y-0.5 hover:border-coral hover:bg-coral/15"
             >
               <Mail className="h-4 w-4" />
               {contact.email}
@@ -37,7 +37,7 @@ export function Contact() {
               href={contact.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 transition-colors hover:border-glacier/50 hover:text-glacier"
+              className="inline-flex items-center gap-2 rounded-full border border-edge bg-surface px-6 py-3 text-sm text-heading shadow-soft backdrop-blur transition-all duration-[400ms] ease-out hover:-translate-y-0.5 hover:border-coral hover:bg-coral/15"
             >
               <ExternalLink className="h-4 w-4" />
               LinkedIn
@@ -48,21 +48,21 @@ export function Contact() {
               href={contact.github}
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 transition-colors hover:border-glacier/50 hover:text-glacier"
+              className="inline-flex items-center gap-2 rounded-full border border-edge bg-surface px-6 py-3 text-sm text-heading shadow-soft backdrop-blur transition-all duration-[400ms] ease-out hover:-translate-y-0.5 hover:border-coral hover:bg-coral/15"
             >
               <ExternalLink className="h-4 w-4" />
               GitHub
             </a>
           </Magnetic>
           <Magnetic>
-            <ResumeButton className="inline-flex items-center gap-2 rounded-full bg-marigold px-6 py-3 text-sm font-medium text-ink transition-transform hover:scale-[1.02]">
+            <ResumeButton className="inline-flex items-center gap-2 rounded-full bg-ocean-deep px-6 py-3 text-sm font-medium text-page shadow-soft transition-all duration-[400ms] ease-out hover:-translate-y-0.5 hover:bg-coral hover:text-heading">
               <FileText className="h-4 w-4" />
               Resume
             </ResumeButton>
           </Magnetic>
         </Reveal>
 
-        <Reveal delay={0.26} className="mt-20 text-xs uppercase tracking-[0.2em] text-white/25">
+        <Reveal delay={0.26} className="mt-20 text-xs uppercase tracking-[0.2em] text-body">
           Samrat Lamsal &middot; Bhubaneswar &middot; {new Date().getFullYear()}
         </Reveal>
       </div>

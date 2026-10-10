@@ -60,7 +60,7 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={transition}
-          className="fixed inset-0 z-[60] flex items-center justify-center bg-ink/90 p-4 backdrop-blur-sm sm:p-8"
+          className="fixed inset-0 z-[60] flex items-center justify-center bg-heading/25 p-4 backdrop-blur-md sm:p-8"
           onClick={onClose}
           role="dialog"
           aria-modal="true"
@@ -71,34 +71,34 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.98 }}
             transition={transition}
-            className="relative flex max-h-full w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-raised"
+            className="relative flex max-h-full w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-edge bg-page shadow-lift"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="absolute right-3 top-3 z-10 rounded-full bg-ink/80 p-2 text-white/70 transition-colors hover:text-white"
+              className="absolute right-3 top-3 z-10 rounded-full bg-surface p-2 text-heading shadow-soft backdrop-blur transition-colors duration-300 hover:bg-coral/30"
             >
               <X className="h-5 w-5" />
             </button>
 
-            <div className="overflow-auto bg-white">
+            <div className="overflow-auto bg-card">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={contact.resumePreview} alt="Samrat Lamsal resume" className="w-full" />
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 px-5 py-4">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-edge px-5 py-4">
               <div>
-                <p className="text-sm font-medium text-white/90">Samrat Lamsal — Resume</p>
-                <p className="text-xs text-white/50">PDF &middot; 1 page</p>
+                <p className="text-sm font-medium text-heading">Samrat Lamsal — Resume</p>
+                <p className="text-xs text-body">PDF &middot; 1 page</p>
               </div>
               <div className="flex flex-wrap items-center gap-3">
                 <a
                   href={contact.resumeHref}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-white/80 transition-colors hover:border-glacier/50 hover:text-glacier"
+                  className="inline-flex items-center gap-2 rounded-full border border-edge bg-surface px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-heading transition-all duration-[400ms] ease-out hover:border-coral hover:bg-coral/20"
                 >
                   Open PDF
                   <ExternalLink className="h-3.5 w-3.5" />
@@ -106,7 +106,7 @@ function ResumeModal({ open, onClose }: { open: boolean; onClose: () => void }) 
                 <a
                   href={contact.resumeHref}
                   download="Samrat_Lamsal_Resume.pdf"
-                  className="inline-flex items-center gap-2 rounded-full bg-marigold px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-ink transition-transform hover:scale-[1.02]"
+                  className="inline-flex items-center gap-2 rounded-full bg-ocean-deep px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-page shadow-soft transition-all duration-[400ms] ease-out hover:bg-coral hover:text-heading"
                 >
                   <Download className="h-3.5 w-3.5" />
                   Download

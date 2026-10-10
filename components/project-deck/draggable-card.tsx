@@ -88,15 +88,15 @@ export function DraggableCard({
         compact ? "touch-pan-y" : "touch-none",
       )}
     >
-      <div className="rounded-2xl border border-white/10 bg-ink-raised p-6 shadow-[0_30px_60px_-20px_rgba(0,0,0,0.65)]">
-        <Badge variant={project.accent === "marigold" ? "marigold" : "glacier"}>
+      <div className="rounded-3xl border border-edge bg-card p-7 shadow-lift">
+        <Badge variant={project.accent === "sunrise" ? "sunrise" : "ocean"}>
           {project.kicker}
         </Badge>
-        <h3 className="font-display mt-4 text-2xl uppercase tracking-wide text-white">
+        <h3 className="font-display mt-4 text-2xl text-heading">
           {project.title}
         </h3>
-        <p className="mt-2 text-sm leading-relaxed text-white/60">{project.tagline}</p>
-        <span className="mt-6 inline-block text-xs uppercase tracking-[0.2em] text-white/35">
+        <p className="mt-2 text-sm leading-relaxed text-body">{project.tagline}</p>
+        <span className="mt-6 inline-block text-xs uppercase tracking-[0.2em] text-ocean-deep">
           Drag, or click to open &rarr;
         </span>
       </div>

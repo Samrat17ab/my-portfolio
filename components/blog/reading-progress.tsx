@@ -37,7 +37,7 @@ export function ReadingProgress({ targetId }: { targetId: string }) {
     <div className="pointer-events-none fixed inset-x-0 top-0 z-[60] h-[3px]" aria-hidden>
       <div
         ref={barRef}
-        className="h-full origin-left bg-gradient-to-r from-glacier via-glacier to-marigold"
+        className="h-full origin-left bg-gradient-to-r from-tide via-ocean to-coral"
         style={{ transform: "scaleX(0)" }}
       />
     </div>

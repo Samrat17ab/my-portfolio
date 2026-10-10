@@ -24,7 +24,7 @@ export function RandomPostButton({
       type="button"
       onClick={() => router.push(`/blog/${pool[Math.floor(Math.random() * pool.length)]}`)}
       className={cn(
-        "inline-flex min-h-11 items-center gap-2 rounded-full border border-marigold/40 px-5 text-sm font-medium text-marigold transition-colors hover:bg-marigold/10",
+        "inline-flex min-h-11 items-center gap-2 rounded-full border border-coral/60 bg-surface px-5 text-sm font-medium text-heading shadow-soft transition-all duration-[400ms] ease-out hover:-translate-y-0.5 hover:bg-coral/25",
         className,
       )}
     >

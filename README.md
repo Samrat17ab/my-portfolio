@@ -2,10 +2,18 @@
 
 Live at **[samratlamsal24.com.np](https://samratlamsal24.com.np)**
 
-A cinematic, motion-first personal portfolio — a scroll-driven procedural sunrise reveal for
-the hero, a draggable physics-based project deck, scroll-linked reveals throughout, and a
-fully worked "proof of thinking" section of estimation exercises with the math shown in the
-open. Fully static, no backend.
+A calm, light personal portfolio themed on sunrise over a quiet beach — a scroll-driven
+sunrise-over-the-sea reveal for the hero, a draggable physics-based project deck, gentle
+scroll-linked reveals throughout, and a fully worked "proof of thinking" section of estimation
+exercises with the math shown in the open. Fully static, no backend.
+
+## Theme
+
+All colours, shadows and fonts are tokens defined once at the top of `app/globals.css`
+(page, dawn sky, ocean, ocean-deep, tide, shallow, coral, gold, heading, body, surface, card,
+edge). Components only use them through Tailwind utilities like `bg-page`, `text-heading` or
+`border-edge`, so changing a value there restyles the whole site. Headings use Fraunces, body
+text DM Sans.
 
 ## Tech stack
 
@@ -17,9 +25,9 @@ open. Fully static, no backend.
 
 ## Features
 
-- **Procedural sunrise hero** — seeded RNG generates the torn-paper crack and mountain ridgeline,
-  so the effect is deterministic across server and client renders. Scroll tears the title sheet
-  in two and a mountain range rises behind it.
+- **Sunrise-over-the-sea hero** — scroll gently parts the dawn sky the name is written on, and
+  the sun rises out of a layered ocean that drifts with the pointer. The seam is generated from a
+  seeded RNG so server and client renders match.
 - **Draggable project deck** — physics-based drag with spring 3D tilt on pointer position, throw-
   and-settle on release. Falls back to a static grid under reduced motion.
 - **Animated stat counters, parallax sections, magnetic buttons** throughout.

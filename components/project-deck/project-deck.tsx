@@ -75,15 +75,15 @@ export function ProjectDeck() {
           <Link
             key={project.slug}
             href={`/work/${project.slug}`}
-            className="rounded-2xl border border-white/10 bg-ink-raised/90 p-6 transition-colors hover:border-glacier/40"
+            className="rounded-3xl border border-edge bg-card p-7 shadow-soft transition-all duration-500 ease-out hover:-translate-y-1 hover:border-coral/60 hover:shadow-lift"
           >
-            <Badge variant={project.accent === "marigold" ? "marigold" : "glacier"}>
+            <Badge variant={project.accent === "sunrise" ? "sunrise" : "ocean"}>
               {project.kicker}
             </Badge>
-            <h3 className="font-display mt-4 text-2xl uppercase tracking-wide text-white">
+            <h3 className="font-display mt-4 text-2xl text-heading">
               {project.title}
             </h3>
-            <p className="mt-2 text-sm text-white/60">{project.tagline}</p>
+            <p className="mt-2 text-sm leading-relaxed text-body">{project.tagline}</p>
           </Link>
         ))}
       </div>

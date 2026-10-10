@@ -1,27 +1,68 @@
 @import "tailwindcss";
 
+/* =====================================================================
+   Theme tokens: "sunrise over a quiet beach". Change colours here only;
+   every component reads these through Tailwind utilities (bg-page,
+   text-heading, text-ocean-deep, border-edge, shadow-soft, ...).
+   ===================================================================== */
 :root {
-  --color-ink: #0b0f14;
-  --color-ink-raised: #10161d;
-  --color-glacier: #7fb8c4;
-  --color-marigold: #e8a33d;
-  --color-line: rgba(255, 255, 255, 0.08);
-  --font-display: var(--font-anton);
-  --font-body: var(--font-inter);
+  /* page + sky */
+  --color-page: #faf8f4; /* sea-foam white base */
+  --color-dawn-peach: #ffe9d8; /* sky gradient, warm end */
+  --color-dawn-sky: #d6ecf7; /* sky gradient, cool end */
+
+  /* ocean */
+  --color-ocean: #2f7fa8; /* primary: large text, focus rings, decoration */
+  --color-ocean-deep: #22698f; /* AA-safe ocean for small text, links and button fills */
+  --color-tide: #6db6d6; /* lighter tide: lines, glows, icons */
+  --color-shallow: #bfe0ee; /* shallow water: chips, tags, soft fills */
+
+  /* sunrise accents: decoration and hover backgrounds only, never text on light */
+  --color-coral: #ff9e80;
+  --color-gold: #f6c177;
+
+  /* text */
+  --color-heading: #1f3a4d; /* deep navy */
+  --color-body: #5a7385; /* muted blue-grey, AA on page */
+
+  /* surfaces */
+  --color-surface: rgba(255, 255, 255, 0.7); /* frosted cards, with backdrop-blur */
+  --color-card: #fffdfa; /* solid card, for anything that overlaps */
+  --color-edge: #e3eef3; /* 1px borders and dividers */
+
+  /* shadows: tinted navy, never black */
+  --shadow-soft: 0 1px 2px rgba(31, 58, 77, 0.04), 0 14px 34px -16px rgba(31, 58, 77, 0.18);
+  --shadow-lift: 0 2px 6px rgba(31, 58, 77, 0.05), 0 28px 56px -24px rgba(31, 58, 77, 0.28);
+
+  /* fonts (set by next/font in app/layout.tsx) */
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-dm-sans);
 }
 
 @theme inline {
-  --color-ink: var(--color-ink);
-  --color-ink-raised: var(--color-ink-raised);
-  --color-glacier: var(--color-glacier);
-  --color-marigold: var(--color-marigold);
-  --color-line: var(--color-line);
+  --color-page: var(--color-page);
+  --color-dawn-peach: var(--color-dawn-peach);
+  --color-dawn-sky: var(--color-dawn-sky);
+  --color-ocean: var(--color-ocean);
+  --color-ocean-deep: var(--color-ocean-deep);
+  --color-tide: var(--color-tide);
+  --color-shallow: var(--color-shallow);
+  --color-coral: var(--color-coral);
+  --color-gold: var(--color-gold);
+  --color-heading: var(--color-heading);
+  --color-body: var(--color-body);
+  --color-surface: var(--color-surface);
+  --color-card: var(--color-card);
+  --color-edge: var(--color-edge);
+  --shadow-soft: var(--shadow-soft);
+  --shadow-lift: var(--shadow-lift);
   --font-display: var(--font-display);
   --font-sans: var(--font-body);
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
+  background: var(--color-page);
 }
 
 /* Keep anchored section headings clear of the fixed nav bar. */
@@ -30,25 +71,65 @@ section[id] {
 }
 
 body {
-  background: var(--color-ink);
-  color: rgba(255, 255, 255, 0.92);
+  /* Soft dawn sky at the top of every page, settling into the sea-foam base. */
+  background:
+    linear-gradient(
+      to bottom,
+      var(--color-dawn-peach) 0,
+      var(--color-dawn-sky) 340px,
+      var(--color-page) 760px
+    )
+    no-repeat,
+    var(--color-page);
+  color: var(--color-body);
   font-family: var(--font-body);
+  line-height: 1.7;
+  letter-spacing: 0.005em;
 }
 
 .font-display {
   font-family: var(--font-display);
-  letter-spacing: 0.01em;
+  font-optical-sizing: auto;
+  letter-spacing: -0.01em;
 }
 
 ::selection {
-  background: var(--color-marigold);
-  color: var(--color-ink);
+  background: var(--color-shallow);
+  color: var(--color-heading);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ocean);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ---------- gentle motion ---------- */
+@keyframes sky-drift {
+  0%, 100% { background-position: 50% 100%; }
+  50% { background-position: 42% 92%; }
+}
+@keyframes wave-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+.wave-drift { animation: wave-drift 38s linear infinite; }
+.wave-drift-slow { animation: wave-drift 60s linear infinite reverse; }
+/* Hero sky: the sunrise glow layer drifts very slowly; the sky layer stays put. */
+.hero-sky-drift {
+  background-size: 160% 160%, 100% 100%;
+  background-position: 50% 100%, 0 0;
+  animation: sky-drift 26s ease-in-out infinite;
 }
 
 /* Utility for anything that should snap to its end state for reduced-motion
    users instead of relying on a JS branch in every component. */
 @media (prefers-reduced-motion: reduce) {
-  .motion-safe-only {
+  .motion-safe-only,
+  .wave-drift,
+  .wave-drift-slow,
+  .hero-sky-drift {
     animation: none !important;
     transition: none !important;
   }

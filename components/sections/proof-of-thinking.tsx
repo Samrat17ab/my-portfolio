@@ -25,16 +25,16 @@ export function ProofOfThinking() {
           <SectionHeading kicker="Show your work" title="Proof of Thinking" />
         </Reveal>
         <Reveal delay={0.06}>
-          <p className="mt-4 max-w-xl text-sm text-white/55">
+          <p className="mt-4 max-w-xl text-base leading-[1.75] text-body">
             A few guesstimates worked in the open — including where the first pass was wrong.
           </p>
         </Reveal>
 
-        <div className="mt-10 divide-y divide-line border-y border-line">
+        <div className="mt-12 space-y-4">
           {featured.map((item, i) => {
             const isOpen = openSlug === item.slug;
             return (
-              <Reveal key={item.slug} delay={0.05 * i}>
+              <Reveal key={item.slug} delay={0.05 * i} className="rounded-3xl border border-edge bg-surface px-6 shadow-soft backdrop-blur-md transition-shadow duration-500 hover:shadow-lift sm:px-8">
                 <button
                   type="button"
                   onClick={() => setOpenSlug(isOpen ? null : item.slug)}
@@ -42,16 +42,16 @@ export function ProofOfThinking() {
                   aria-expanded={isOpen}
                 >
                   <span className="flex flex-col gap-2">
-                    <Badge variant="glacier" className="w-fit">
+                    <Badge variant="ocean" className="w-fit">
                       {item.tag}
                     </Badge>
-                    <span className="text-base font-medium text-white/85 sm:text-lg">
+                    <span className="font-display text-lg leading-snug text-heading sm:text-xl">
                       {item.question}
                     </span>
                   </span>
                   <ChevronDown
                     className={cn(
-                      "h-5 w-5 shrink-0 text-glacier transition-transform duration-300",
+                      "h-5 w-5 shrink-0 text-ocean transition-transform duration-500",
                       isOpen && "rotate-180",
                     )}
                   />
@@ -65,14 +65,16 @@ export function ProofOfThinking() {
                       transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
                       className="overflow-hidden"
                     >
-                      <div className="space-y-3 pb-6 text-sm leading-relaxed text-white/55">
-                        <ul className="list-disc space-y-2 pl-5">
+                      <div className="space-y-4 pb-7 text-[15px] leading-[1.75] text-body">
+                        <ul className="list-disc space-y-2 pl-5 marker:text-tide">
                           {item.approach.map((step, stepIndex) => (
                             <li key={stepIndex}>{step}</li>
                           ))}
                         </ul>
-                        {item.reality && <p className="text-marigold/80">{item.reality}</p>}
-                        <p className="font-medium text-white/80">{item.result}</p>
+                        {item.reality && (
+                          <p className="rounded-2xl border-l-2 border-coral bg-gold/15 px-4 py-3 text-heading">{item.reality}</p>
+                        )}
+                        <p className="font-medium text-heading">{item.result}</p>
                       </div>
                     </motion.div>
                   )}
@@ -82,10 +84,10 @@ export function ProofOfThinking() {
           })}
         </div>
 
-        <Reveal delay={0.15} className="mt-6">
+        <Reveal delay={0.15} className="mt-8">
           <Link
             href="/guesstimates"
-            className="text-xs font-medium uppercase tracking-[0.2em] text-white/40 transition-colors hover:text-glacier"
+            className="text-xs font-medium uppercase tracking-[0.2em] text-ocean-deep underline decoration-transparent decoration-2 underline-offset-8 transition-colors duration-300 hover:decoration-coral"
           >
             All 10 guesstimates &rarr;
           </Link>

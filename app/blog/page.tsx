@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { Nav } from "@/components/nav";
 import { Reveal } from "@/components/reveal";
 import { BlogIndex } from "@/components/blog/blog-index";
-import { Ridge } from "@/components/blog/ridge";
+import { Horizon } from "@/components/blog/horizon";
 import { BLOG_ENABLED } from "@/lib/blog/config";
 import { getPosts } from "@/lib/blog/posts";
 
@@ -26,21 +26,21 @@ export default function BlogPage() {
       <main className="pb-32">
         <header className="relative overflow-hidden pb-36 pt-40 sm:pb-44 sm:pt-48">
           <div
-            className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-glacier/[0.06] blur-[120px]"
+            className="pointer-events-none absolute left-1/2 top-0 h-[420px] w-[720px] -translate-x-1/2 rounded-full bg-gold/25 blur-[120px]"
             aria-hidden
           />
-          <Ridge />
+          <Horizon />
           <div className="relative mx-auto max-w-3xl px-6">
             <Reveal>
-              <span className="text-xs font-medium uppercase tracking-[0.3em] text-glacier">Blog</span>
+              <span className="text-xs font-medium uppercase tracking-[0.3em] text-ocean-deep">Blog</span>
             </Reveal>
             <Reveal delay={0.06}>
-              <h1 className="font-display mt-5 text-balance text-5xl uppercase leading-[0.95] tracking-wide text-white sm:text-7xl">
+              <h1 className="font-display mt-5 text-balance text-5xl font-light leading-[1.05] text-heading sm:text-7xl">
                 Building, learning, and the in-between
               </h1>
             </Reveal>
             <Reveal delay={0.12}>
-              <p className="blog-serif mt-6 max-w-xl text-lg leading-relaxed text-white/60 sm:text-xl">
+              <p className="blog-serif mt-6 max-w-xl text-lg leading-relaxed text-body sm:text-xl">
                 Notes on the products I&apos;m building, things I&apos;ve figured out along the way, wins worth sharing,
                 and sometimes just how it feels.
               </p>
@@ -52,7 +52,7 @@ export default function BlogPage() {
           {posts.length > 0 ? (
             <BlogIndex posts={posts} />
           ) : (
-            <p className="blog-serif text-xl text-white/55">The first post is on its way.</p>
+            <p className="blog-serif text-xl text-body">The first post is on its way.</p>
           )}
         </div>
       </main>

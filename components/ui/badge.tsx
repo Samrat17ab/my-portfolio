@@ -8,9 +8,9 @@ const badgeVariants = cva(
   {
     variants: {
       variant: {
-        glacier: "border-glacier/30 bg-glacier/10 text-glacier",
-        marigold: "border-marigold/30 bg-marigold/10 text-marigold",
-        neutral: "border-white/15 bg-white/5 text-white/70",
+        ocean: "border-shallow bg-shallow/50 text-ocean-deep",
+        sunrise: "border-gold/60 bg-gold/25 text-heading",
+        neutral: "border-edge bg-surface text-body",
       },
     },
     defaultVariants: {

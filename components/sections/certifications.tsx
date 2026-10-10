@@ -26,13 +26,13 @@ export function Certifications() {
   }, [openCert]);
 
   return (
-    <section className="border-y border-line py-24 sm:py-32">
+    <section className="py-24 sm:py-32">
       <div className="mx-auto max-w-4xl px-6">
         <Reveal>
           <SectionHeading kicker="Coursework" title="Certifications" />
         </Reveal>
         <Reveal delay={0.05}>
-          <p className="mt-4 text-sm text-white/50">Click a certificate to view it.</p>
+          <p className="mt-4 text-sm text-body">Click a certificate to view it.</p>
         </Reveal>
 
         <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -43,7 +43,7 @@ export function Certifications() {
                 onClick={() => setOpenCert(cert)}
                 className="block w-full text-left"
               >
-                <Card className="h-full transition-colors hover:border-glacier/40">
+                <Card className="h-full hover:-translate-y-1 hover:border-coral/60 hover:shadow-lift">
                   <CardHeader>
                     <CardTitle className="text-lg normal-case tracking-normal">
                       {cert.name}
@@ -76,7 +76,7 @@ function CertLightbox({ cert, onClose }: { cert: Certification | null; onClose: 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={transition}
-          className="fixed inset-0 z-50 flex items-center justify-center bg-ink/90 p-4 backdrop-blur-sm sm:p-8"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-heading/25 p-4 backdrop-blur-md sm:p-8"
           onClick={onClose}
           role="dialog"
           aria-modal="true"
@@ -87,14 +87,14 @@ function CertLightbox({ cert, onClose }: { cert: Certification | null; onClose: 
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 16, scale: 0.98 }}
             transition={transition}
-            className="relative flex max-h-full w-full max-w-3xl flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-raised"
+            className="relative flex max-h-full w-full max-w-3xl flex-col overflow-hidden rounded-3xl border border-edge bg-page shadow-lift"
             onClick={(event) => event.stopPropagation()}
           >
             <button
               type="button"
               onClick={onClose}
               aria-label="Close"
-              className="absolute right-3 top-3 z-10 rounded-full bg-ink/80 p-2 text-white/70 transition-colors hover:text-white"
+              className="absolute right-3 top-3 z-10 rounded-full bg-surface p-2 text-heading shadow-soft backdrop-blur transition-colors duration-300 hover:bg-coral/30"
             >
               <X className="h-5 w-5" />
             </button>
@@ -104,10 +104,10 @@ function CertLightbox({ cert, onClose }: { cert: Certification | null; onClose: 
               <img src={cert.image} alt={`${cert.name} certificate`} className="w-full" />
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-white/10 px-5 py-4">
+            <div className="flex flex-wrap items-center justify-between gap-3 border-t border-edge px-5 py-4">
               <div>
-                <p className="text-sm font-medium text-white/90">{cert.name}</p>
-                <p className="text-xs text-white/50">
+                <p className="text-sm font-medium text-heading">{cert.name}</p>
+                <p className="text-xs text-body">
                   {cert.issuer} &middot; {cert.date}
                 </p>
               </div>
@@ -115,7 +115,7 @@ function CertLightbox({ cert, onClose }: { cert: Certification | null; onClose: 
                 href={cert.driveUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-white/80 transition-colors hover:border-glacier/50 hover:text-glacier"
+                className="inline-flex items-center gap-2 rounded-full border border-edge bg-surface px-4 py-2 text-xs font-medium uppercase tracking-[0.12em] text-heading transition-all duration-[400ms] ease-out hover:border-coral hover:bg-coral/20"
               >
                 Open in Drive
                 <ExternalLink className="h-3.5 w-3.5" />

@@ -18,7 +18,7 @@ type Filter = "all" | Category;
 function Meta({ post, long = false, inRow = false }: { post: PostMeta; long?: boolean; inRow?: boolean }) {
   const dateClass = inRow ? "sm:hidden" : undefined;
   return (
-    <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-white/45">
+    <span className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-body">
       <time dateTime={post.date} className={dateClass}>
         {formatDate(post.date, long ? "long" : "short")}
       </time>
@@ -27,7 +27,7 @@ function Meta({ post, long = false, inRow = false }: { post: PostMeta; long?: bo
       </span>
       <span>{post.readingMinutes} min read</span>
       {post.draft && (
-        <span className="rounded-full border border-marigold/40 px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-marigold">
+        <span className="rounded-full border border-coral/70 bg-coral/15 px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-heading">
           Draft
         </span>
       )}
@@ -40,8 +40,8 @@ function DateBlock({ iso }: { iso: string }) {
   const month = d.toLocaleDateString("en-US", { timeZone: "UTC", month: "short" });
   return (
     <span className="hidden flex-col items-start pt-1 sm:flex" aria-hidden>
-      <span className="font-display text-3xl leading-none text-white/80">{String(d.getUTCDate()).padStart(2, "0")}</span>
-      <span className="mt-1 text-[11px] uppercase tracking-[0.2em] text-white/40">
+      <span className="font-display text-3xl leading-none text-heading">{String(d.getUTCDate()).padStart(2, "0")}</span>
+      <span className="mt-1 text-[11px] uppercase tracking-[0.2em] text-body">
         {month} {d.getUTCFullYear()}
       </span>
     </span>
@@ -68,7 +68,7 @@ export function BlogIndex({ posts }: { posts: PostMeta[] }) {
 
   return (
     <div>
-      <div className="flex flex-col gap-5 border-b border-white/10 pb-6 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-5 border-b border-edge pb-6 sm:flex-row sm:items-center sm:justify-between">
         <div className="-mx-1 flex flex-wrap gap-1" role="group" aria-label="Filter posts by category">
           {tabs.map((tab) => {
             const active = tab === filter;
@@ -83,12 +83,12 @@ export function BlogIndex({ posts }: { posts: PostMeta[] }) {
                 style={tab === "all" ? undefined : categoryStyle(tab)}
                 className={cn(
                   "blog-tab inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-sm transition-colors",
-                  active ? "bg-white/10 text-white" : "text-white/55 hover:text-white",
+                  active ? "bg-shallow/70 text-heading" : "text-body hover:text-heading",
                 )}
               >
                 {tab !== "all" && <span className="blog-tab__dot" aria-hidden />}
                 {label}
-                <span className="text-xs text-white/35">{count}</span>
+                <span className="text-xs text-body">{count}</span>
               </button>
             );
           })}
@@ -97,7 +97,7 @@ export function BlogIndex({ posts }: { posts: PostMeta[] }) {
       </div>
 
       {filter !== "all" && (
-        <p className="mt-6 text-sm text-white/45">{CATEGORIES[filter].blurb}.</p>
+        <p className="mt-6 text-sm text-body">{CATEGORIES[filter].blurb}.</p>
       )}
 
       <AnimatePresence mode="wait" initial={false}>
@@ -107,16 +107,16 @@ export function BlogIndex({ posts }: { posts: PostMeta[] }) {
               <span className="blog-featured__glow" aria-hidden />
               <span className="relative block">
                 <span className="flex flex-wrap items-center gap-3">
-                  <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-white/45">Latest</span>
+                  <span className="text-[11px] font-medium uppercase tracking-[0.3em] text-body">Latest</span>
                   <CategoryChip category={featured.category} />
                 </span>
-                <span className="blog-serif mt-5 block text-balance text-3xl leading-[1.12] text-white sm:text-5xl">
+                <span className="blog-serif mt-5 block text-balance text-3xl leading-[1.12] text-heading sm:text-5xl">
                   {featured.title}
                 </span>
-                <span className="blog-serif mt-5 block max-w-2xl text-lg leading-relaxed text-white/65">{featured.excerpt}</span>
+                <span className="blog-serif mt-5 block max-w-2xl text-lg leading-relaxed text-body">{featured.excerpt}</span>
                 <span className="mt-7 flex flex-wrap items-center justify-between gap-4">
                   <Meta post={featured} long />
-                  <span className="inline-flex items-center gap-2 text-sm font-medium text-glacier">
+                  <span className="inline-flex items-center gap-2 text-sm font-medium text-ocean-deep">
                     Read post
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" aria-hidden />
                   </span>
@@ -126,7 +126,7 @@ export function BlogIndex({ posts }: { posts: PostMeta[] }) {
           )}
 
           {list.length > 0 ? (
-            <ul className="mt-6 divide-y divide-white/10">
+            <ul className="mt-6 divide-y divide-edge">
               {list.map((post) => (
                 <li key={post.slug} style={categoryStyle(post.category)}>
                   <Link
@@ -139,13 +139,13 @@ export function BlogIndex({ posts }: { posts: PostMeta[] }) {
                         <CategoryChip category={post.category} />
                         <Meta post={post} inRow />
                       </span>
-                      <span className="blog-serif mt-3 block text-balance text-2xl leading-snug text-white transition-colors group-hover:text-glacier sm:text-[1.75rem]">
+                      <span className="blog-serif mt-3 block text-balance text-2xl leading-snug text-heading transition-colors group-hover:text-ocean-deep sm:text-[1.75rem]">
                         {post.title}
                       </span>
-                      <span className="blog-serif mt-2 block text-base leading-relaxed text-white/55 sm:text-[1.05rem]">
+                      <span className="blog-serif mt-2 block text-base leading-relaxed text-body sm:text-[1.05rem]">
                         {post.excerpt}
                       </span>
-                      <span className="mt-4 inline-flex items-center gap-2 text-sm text-white/40 transition-colors group-hover:text-glacier">
+                      <span className="mt-4 inline-flex items-center gap-2 text-sm text-body transition-colors group-hover:text-ocean-deep">
                         Read
                         <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" aria-hidden />
                       </span>
@@ -155,7 +155,7 @@ export function BlogIndex({ posts }: { posts: PostMeta[] }) {
               ))}
             </ul>
           ) : (
-            !featured && <p className="mt-12 text-white/50">Nothing here yet.</p>
+            !featured && <p className="mt-12 text-body">Nothing here yet.</p>
           )}
         </motion.div>
       </AnimatePresence>

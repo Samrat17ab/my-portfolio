@@ -14,7 +14,7 @@ export interface Project {
   summary: string[];
   stats?: { label: string; value: number; suffix?: string; prefix?: string }[];
   links: ExternalLink[];
-  accent?: "glacier" | "marigold";
+  accent?: "ocean" | "sunrise";
 }
 
 export const projects: Project[] = [
@@ -30,7 +30,7 @@ export const projects: Project[] = [
       "Built with TypeScript, React, Next.js, and Cloudflare Workers.",
     ],
     links: [{ label: "Visit mymoodly.space", href: "https://mymoodly.space" }],
-    accent: "marigold",
+    accent: "sunrise",
   },
   {
     slug: "zomato-vs-swiggy",
@@ -43,7 +43,7 @@ export const projects: Project[] = [
       "8 strategic recommendations formulated, including a B2B supply chain initiative for Swiggy and a premium-membership evolution roadmap for Zomato.",
     ],
     links: [],
-    accent: "glacier",
+    accent: "ocean",
   },
   {
     slug: "cashkaro",
@@ -60,7 +60,7 @@ export const projects: Project[] = [
       { label: "View the deck (PDF)", href: "https://drive.google.com/file/d/1RKDhJ6bMgNzdSqLJ0YDrJFBgWB7d36QJ/view" },
       { label: "Open the interactive case study", href: "https://code-companion-hub-13.lovable.app/" },
     ],
-    accent: "glacier",
+    accent: "ocean",
   },
   {
     slug: "soulace",
@@ -73,7 +73,7 @@ export const projects: Project[] = [
       "Earned 1-month personalized mentorship from Google experts on product strategy, scalability, and go-to-market execution.",
     ],
     links: [],
-    accent: "marigold",
+    accent: "sunrise",
   },
 ];
 

@@ -20,10 +20,6 @@ export function smooth(t: number) {
   return c * c * (3 - 2 * c);
 }
 
-export function easeOutBack(t: number, overshoot = 1.70158) {
-  const c = clamp(t, 0, 1) - 1;
-  return 1 + (overshoot + 1) * c * c * c + overshoot * c * c;
-}
 
 export interface Point {
   x: number;
@@ -31,7 +27,7 @@ export interface Point {
 }
 
 /** A jagged line from x=0 to x=width, jittered around a mid baseline —
- * used as the torn-paper crack. */
+ * used as the seam where the hero sky parts. */
 export function generateTearLine(seed: number, width: number, height: number, segments = 24): Point[] {
   const rng = mulberry32(seed);
   const midY = height / 2;
@@ -48,32 +44,4 @@ export function generateTearLine(seed: number, width: number, height: number, se
 
 export function pointsToPath(points: Point[]) {
   return points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.x.toFixed(2)} ${p.y.toFixed(2)}`).join(" ");
-}
-
-/** Per-segment stroke widths so a bundle of crack lines reads as torn fibres
- * rather than one clean cut. */
-export function generateFibreWidths(seed: number, count: number, min = 0.5, max = 2.4) {
-  const rng = mulberry32(seed + 4242);
-  return Array.from({ length: count }, () => min + rng() * (max - min));
-}
-
-/** A jagged ridge silhouette as an SVG path filled down to the bottom edge. */
-export function generateRidgePath(
-  seed: number,
-  width: number,
-  height: number,
-  baseline: number,
-  amplitude: number,
-  points = 10,
-) {
-  const rng = mulberry32(seed);
-  const step = width / points;
-  let d = `M 0 ${height}`;
-  for (let i = 0; i <= points; i++) {
-    const x = i * step;
-    const y = baseline - rng() * amplitude;
-    d += ` L ${x.toFixed(1)} ${y.toFixed(1)}`;
-  }
-  d += ` L ${width} ${height} Z`;
-  return d;
 }

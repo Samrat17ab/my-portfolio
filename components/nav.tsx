@@ -118,15 +118,15 @@ export function Nav() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, delay: isHome ? 1.4 : 0, ease: "easeOut" }}
       className={cn(
-        "fixed inset-x-0 top-0 z-50 border-b transition-colors duration-300",
-        scrolled || menuOpen ? "border-line bg-ink/90 backdrop-blur-md" : "border-transparent",
+        "fixed inset-x-0 top-0 z-50 border-b transition-all duration-500 ease-out",
+        scrolled || menuOpen ? "border-edge bg-page/75 shadow-soft backdrop-blur-lg" : "border-transparent",
       )}
     >
       <div className="flex items-center justify-between px-6 py-4 sm:px-10">
         <Link
           href="/#top"
           onClick={(event) => handleLinkClick(event, "top")}
-          className="font-display text-sm uppercase tracking-[0.2em] text-white"
+          className="font-display text-lg text-heading transition-colors duration-300 hover:text-ocean-deep"
         >
           Samrat Lamsal
         </Link>
@@ -135,13 +135,13 @@ export function Nav() {
           {LINKS.map((link) => {
             const active = isActive(link);
             const className = cn(
-              "relative py-1 text-xs font-medium uppercase tracking-[0.16em] transition-colors hover:text-glacier",
-              active ? "text-glacier" : "text-white/60",
+              "relative py-1 text-xs font-medium uppercase tracking-[0.16em] transition-colors duration-300 hover:text-ocean-deep",
+              active ? "text-ocean-deep" : "text-body",
             );
             const underline = active && (
               <motion.span
                 layoutId="nav-active"
-                className="absolute inset-x-0 -bottom-1 h-px bg-glacier"
+                className="absolute inset-x-0 -bottom-1 h-0.5 rounded-full bg-coral"
                 transition={prefersReducedMotion ? { duration: 0 } : undefined}
               />
             );
@@ -170,7 +170,7 @@ export function Nav() {
 
         <div className="flex items-center gap-3">
           <Magnetic strength={0.3}>
-            <ResumeButton className="rounded-full border border-marigold/40 px-4 py-2 text-xs font-medium uppercase tracking-[0.16em] text-marigold transition-colors hover:bg-marigold/10">
+            <ResumeButton className="rounded-full border border-ocean/30 bg-surface px-4 py-2 text-xs font-medium uppercase tracking-[0.16em] text-ocean-deep backdrop-blur transition-all duration-[400ms] ease-out hover:border-coral hover:bg-coral/25 hover:text-heading">
               Resume
             </ResumeButton>
           </Magnetic>
@@ -179,7 +179,7 @@ export function Nav() {
             onClick={() => setMenuOpen((open) => !open)}
             aria-label={menuOpen ? "Close menu" : "Open menu"}
             aria-expanded={menuOpen}
-            className="rounded-full p-2 text-white/80 transition-colors hover:text-white md:hidden"
+            className="rounded-full p-2 text-heading transition-colors hover:text-ocean-deep md:hidden"
           >
             {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
@@ -193,13 +193,13 @@ export function Nav() {
             animate={{ height: "auto", opacity: 1 }}
             exit={prefersReducedMotion ? { opacity: 0 } : { height: 0, opacity: 0 }}
             transition={{ duration: prefersReducedMotion ? 0 : 0.25 }}
-            className="overflow-hidden border-t border-line md:hidden"
+            className="overflow-hidden border-t border-edge md:hidden"
           >
             <ul className="flex flex-col px-6 py-3">
               {LINKS.map((link) => {
                 const className = cn(
-                  "block py-3 text-sm font-medium uppercase tracking-[0.16em] transition-colors hover:text-glacier",
-                  isActive(link) ? "text-glacier" : "text-white/70",
+                  "block py-3 text-sm font-medium uppercase tracking-[0.16em] transition-colors hover:text-ocean-deep",
+                  isActive(link) ? "text-ocean-deep" : "text-heading",
                 );
                 return (
                   <li key={link.label}>

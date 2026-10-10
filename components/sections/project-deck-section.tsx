@@ -10,7 +10,7 @@ export function ProjectDeckSection() {
           <SectionHeading kicker="Selected work" title="Drag a project" align="center" />
         </Reveal>
         <Reveal delay={0.08} className="mt-4 text-center">
-          <p className="mx-auto max-w-md text-sm text-white/50">
+          <p className="mx-auto max-w-md text-sm text-body">
             Scattered like photos on a desk — pick one up, or click straight through.
           </p>
         </Reveal>

@@ -1,15 +1,16 @@
 import type { Metadata } from "next";
-import { Anton, Inter } from "next/font/google";
+import { DM_Sans, Fraunces } from "next/font/google";
 import "./globals.css";
 
-const anton = Anton({
-  variable: "--font-anton",
+const fraunces = Fraunces({
+  variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: "400",
+  style: ["normal", "italic"],
+  axes: ["opsz", "SOFT"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
 });
 
@@ -35,11 +36,11 @@ addEventListener("load",function(){scrollTo(0,0);setTimeout(function(){history.s
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`${anton.variable} ${inter.variable} dark`}>
+    <html lang="en" className={`${fraunces.variable} ${dmSans.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: RELOAD_TO_TOP }} />
       </head>
-      <body className="min-h-screen bg-ink text-white antialiased selection:bg-marigold selection:text-ink">
+      <body className="min-h-screen text-body antialiased">
         {children}
       </body>
     </html>

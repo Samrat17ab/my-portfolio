@@ -9,6 +9,7 @@ import { ProofOfThinking } from "@/components/sections/proof-of-thinking";
 import { Certifications } from "@/components/sections/certifications";
 import { BlogTeaser } from "@/components/sections/blog-teaser";
 import { Contact } from "@/components/sections/contact";
+import { WaveDivider } from "@/components/wave-divider";
 
 const ProjectDeckSection = dynamic(
   () => import("@/components/sections/project-deck-section").then((m) => m.ProjectDeckSection),
@@ -24,12 +25,18 @@ export default function Home() {
       <main>
         <SunriseReveal />
         <Flagship />
+        <WaveDivider />
         <ProjectDeckSection />
+        <WaveDivider />
         <Experience />
+        <WaveDivider />
         <Leadership />
+        <WaveDivider />
         <ProofOfThinking />
+        <WaveDivider />
         <Certifications />
         <BlogTeaser />
+        <WaveDivider />
         <Contact />
       </main>
     </>

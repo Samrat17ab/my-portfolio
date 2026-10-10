@@ -10,8 +10,8 @@ interface SectionHeadingProps {
 export function SectionHeading({ kicker, title, className, align = "left" }: SectionHeadingProps) {
   return (
     <div className={cn(align === "center" && "text-center", className)}>
-      <span className="text-xs font-medium uppercase tracking-[0.3em] text-glacier">{kicker}</span>
-      <h2 className="font-display mt-3 text-4xl uppercase tracking-wide text-white sm:text-5xl">
+      <span className="text-xs font-medium uppercase tracking-[0.28em] text-ocean-deep">{kicker}</span>
+      <h2 className="font-display mt-4 text-balance text-4xl font-light leading-[1.1] text-heading sm:text-5xl">
         {title}
       </h2>
     </div>

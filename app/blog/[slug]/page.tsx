@@ -45,9 +45,9 @@ function NeighborLink({ post, direction }: { post: PostMeta; direction: "newer" 
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex flex-1 flex-col gap-3 rounded-2xl border border-white/10 p-6 transition-colors hover:border-white/25"
+      className="group flex flex-1 flex-col gap-3 rounded-2xl border border-edge p-6 transition-colors hover:border-coral/60 hover:shadow-lift"
     >
-      <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/40">
+      <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-body">
         {direction === "newer" ? (
           <>
             <ArrowLeft className="h-3.5 w-3.5 transition-transform group-hover:-translate-x-1" aria-hidden /> Newer
@@ -58,7 +58,7 @@ function NeighborLink({ post, direction }: { post: PostMeta; direction: "newer" 
           </>
         )}
       </span>
-      <span className="blog-serif text-balance text-xl leading-snug text-white transition-colors group-hover:text-glacier">
+      <span className="blog-serif text-balance text-xl leading-snug text-heading transition-colors group-hover:text-ocean-deep">
         {post.title}
       </span>
       <CategoryChip category={post.category} className="self-start" />
@@ -84,29 +84,29 @@ export default async function BlogPostPage({ params }: Props) {
         <article id="blog-post" className="mx-auto max-w-[42rem]">
           <Link
             href="/blog"
-            className="inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.2em] text-white/45 transition-colors hover:text-glacier"
+            className="inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.2em] text-body transition-colors hover:text-ocean-deep"
           >
             <ArrowLeft className="h-3.5 w-3.5" aria-hidden /> Blog
           </Link>
 
-          <header className="mt-8 border-b border-white/10 pb-10">
-            <div className="flex flex-wrap items-center gap-x-4 gap-y-3 text-sm text-white/45">
+          <header className="mt-8 border-b border-edge pb-10">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-3 text-sm text-body">
               <CategoryChip category={post.category} />
               <time dateTime={post.date}>{formatDate(post.date)}</time>
               <span aria-hidden>·</span>
               <span>{post.readingMinutes} min read</span>
               {post.draft && (
-                <span className="rounded-full border border-marigold/40 px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-marigold">
+                <span className="rounded-full border border-coral/70 bg-coral/15 px-2 py-0.5 text-[10px] uppercase tracking-[0.14em] text-heading">
                   Draft
                 </span>
               )}
             </div>
-            <h1 className="blog-serif mt-6 text-balance text-4xl leading-[1.1] text-white sm:text-6xl">{post.title}</h1>
+            <h1 className="blog-serif mt-6 text-balance text-4xl leading-[1.1] text-heading sm:text-6xl">{post.title}</h1>
             {(post.mood || post.tags.length > 0) && (
               <p className="mt-6 flex flex-wrap items-center gap-2">
                 {post.mood && <MoodChip mood={post.mood} className="mr-2" />}
                 {post.tags.map((t) => (
-                  <span key={t} className="rounded-full bg-white/[0.06] px-3 py-1 text-xs text-white/55">
+                  <span key={t} className="rounded-full bg-shallow/50 px-3 py-1 text-xs text-body">
                     {t}
                   </span>
                 ))}
@@ -116,22 +116,22 @@ export default async function BlogPostPage({ params }: Props) {
 
           <div className="blog-prose mt-10" dangerouslySetInnerHTML={{ __html: post.html }} />
 
-          <footer className="mt-16 flex items-center gap-5 rounded-2xl border border-white/10 bg-white/[0.02] p-6">
+          <footer className="mt-16 flex items-center gap-5 rounded-2xl border border-edge bg-surface shadow-soft backdrop-blur-md p-6">
             <span
-              className="font-display flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-glacier/15 text-lg text-glacier"
+              className="font-display flex h-14 w-14 shrink-0 items-center justify-center rounded-full bg-shallow/70 text-lg text-ocean-deep"
               aria-hidden
             >
               SL
             </span>
             <span className="min-w-0">
-              <span className="block text-sm font-medium text-white">Written by Samrat Lamsal</span>
-              <span className="mt-1 block text-sm leading-relaxed text-white/55">
+              <span className="block text-sm font-medium text-heading">Written by Samrat Lamsal</span>
+              <span className="mt-1 block text-sm leading-relaxed text-body">
                 Product manager, building{" "}
-                <a href="https://mymoodly.space" target="_blank" rel="noreferrer" className="text-white/80 underline decoration-white/25 underline-offset-4 hover:decoration-glacier">
+                <a href="https://mymoodly.space" target="_blank" rel="noreferrer" className="text-heading underline decoration-ocean/30 underline-offset-4 hover:decoration-coral">
                   MyMoodly
                 </a>
                 .{" "}
-                <Link href="/" className="text-white/80 underline decoration-white/25 underline-offset-4 hover:decoration-glacier">
+                <Link href="/" className="text-heading underline decoration-ocean/30 underline-offset-4 hover:decoration-coral">
                   More about me
                 </Link>
               </span>
@@ -149,20 +149,20 @@ export default async function BlogPostPage({ params }: Props) {
 
           {related.length > 0 && (
             <section className="mt-16" aria-labelledby="blog-related">
-              <h2 id="blog-related" className="text-xs uppercase tracking-[0.25em] text-white/40">
+              <h2 id="blog-related" className="text-xs uppercase tracking-[0.25em] text-body">
                 More in {category.label}
               </h2>
-              <ul className="mt-5 divide-y divide-white/10 border-y border-white/10">
+              <ul className="mt-5 divide-y divide-edge border-y border-edge">
                 {related.map((r) => (
                   <li key={r.slug}>
                     <Link href={`/blog/${r.slug}`} className="group flex items-center justify-between gap-6 py-5">
                       <span>
                         <CategoryChip category={r.category} />
-                        <span className="blog-serif mt-2 block text-xl text-white transition-colors group-hover:text-glacier">
+                        <span className="blog-serif mt-2 block text-xl text-heading transition-colors group-hover:text-ocean-deep">
                           {r.title}
                         </span>
                       </span>
-                      <ArrowRight className="h-4 w-4 shrink-0 text-white/40 transition-transform group-hover:translate-x-1" aria-hidden />
+                      <ArrowRight className="h-4 w-4 shrink-0 text-body transition-transform group-hover:translate-x-1" aria-hidden />
                     </Link>
                   </li>
                 ))}
@@ -173,7 +173,7 @@ export default async function BlogPostPage({ params }: Props) {
           <div className="mt-14 flex flex-wrap items-center justify-center gap-4">
             <Link
               href="/blog"
-              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-white/15 px-5 text-sm text-white/80 transition-colors hover:border-glacier/50 hover:text-glacier"
+              className="inline-flex min-h-11 items-center gap-2 rounded-full border border-edge px-5 text-sm text-heading transition-colors hover:border-coral hover:text-ocean-deep"
             >
               All posts
             </Link>
