@@ -1,10 +1,8 @@
 ---
-# Sample entry for previewing the design. Delete or replace it before publishing.
 title: Things I didn't know I'd miss
 date: 2026-09-12
 mood: tender
 tags: [home, distance]
-draft: true
 ---
 
 Nobody warns you that the things you miss about home are so small. Not the big moments. The background noise.

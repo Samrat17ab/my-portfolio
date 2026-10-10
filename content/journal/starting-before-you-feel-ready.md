@@ -1,10 +1,8 @@
 ---
-# Sample entry for previewing the design. Delete or replace it before publishing.
 title: On starting before you feel ready
 date: 2026-09-27
 mood: restless
 tags: [building, work]
-draft: true
 ---
 
 There's a version of me who waits until everything is figured out. He has excellent plans. He has never shipped anything.

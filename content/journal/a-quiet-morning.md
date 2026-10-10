@@ -1,10 +1,8 @@
 ---
-# Sample entry for previewing the design. Delete or replace it before publishing.
 title: Notes from a quiet morning
 date: 2026-10-08
 mood: calm
 tags: [mornings, slowing down]
-draft: true
 ---
 
 I woke up before the alarm today, which almost never happens. The light was that thin grey-blue it gets before the sun commits to anything, and for once I didn't reach for my phone.

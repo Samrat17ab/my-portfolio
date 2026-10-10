@@ -60,8 +60,7 @@ disappear.
 
 To write an entry, copy `content/journal/_template.md` to a new file (the file name becomes the
 URL) and write in Markdown. Keep `draft: true` while writing: drafts appear in `npm run dev` but
-never in a production build. The `sample-*.md` files are drafts for previewing the design; delete
-them once you have real entries.
+never in a production build.
 
 ## Deployment
 
