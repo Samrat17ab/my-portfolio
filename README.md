@@ -52,6 +52,17 @@ npm run lint     # eslint
 - `lib/content.ts` — all copy and data, typed and centralized.
 - `lib/motion-math.ts` — the seeded RNG and easing helpers the hero and project deck reuse.
 
+## Journal
+
+A personal journal at `/journal`, switched on or off with one line in `lib/journal/config.ts`
+(`JOURNAL_ENABLED`). When off, the pages show "not found" and the nav link and homepage section
+disappear.
+
+To write an entry, copy `content/journal/_template.md` to a new file (the file name becomes the
+URL) and write in Markdown. Keep `draft: true` while writing: drafts appear in `npm run dev` but
+never in a production build. The `sample-*.md` files are drafts for previewing the design; delete
+them once you have real entries.
+
 ## Deployment
 
 Static export, deployed to Cloudflare Pages:

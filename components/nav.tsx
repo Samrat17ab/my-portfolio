@@ -14,15 +14,21 @@ import { Menu, X } from "lucide-react";
 
 import { Magnetic } from "@/components/magnetic";
 import { ResumeButton } from "@/components/resume-viewer";
+import { JOURNAL_ENABLED } from "@/lib/journal/config";
 import { cn } from "@/lib/utils";
 
-const LINKS = [
+// `id` links scroll to a homepage section; `href` links go to their own page.
+type NavItem = { label: string } & ({ id: string; href?: undefined } | { href: string; id?: undefined });
+
+const LINKS: NavItem[] = [
   { id: "work", label: "Work" },
   { id: "experience", label: "Experience" },
   { id: "leadership", label: "Leadership" },
   { id: "thinking", label: "Thinking" },
+  ...(JOURNAL_ENABLED ? [{ href: "/journal", label: "Journal" }] : []),
   { id: "contact", label: "Contact" },
 ];
+const SECTION_IDS = LINKS.flatMap((link) => (link.id ? [link.id] : []));
 
 export function Nav() {
   const pathname = usePathname();
@@ -73,7 +79,7 @@ export function Nav() {
       { rootMargin: "-45% 0px -50% 0px" },
     );
     const observeAll = () => {
-      for (const { id } of LINKS) {
+      for (const id of SECTION_IDS) {
         const el = document.getElementById(id);
         if (el) observer.observe(el);
       }
@@ -85,6 +91,10 @@ export function Nav() {
       observer.disconnect();
     };
   }, [isHome]);
+
+  function isActive(link: NavItem) {
+    return link.href ? pathname.startsWith(link.href) : activeId === link.id;
+  }
 
   function handleLinkClick(event: React.MouseEvent<HTMLAnchorElement>, id: string) {
     if (!isHome || !document.getElementById(id)) {
@@ -122,28 +132,40 @@ export function Nav() {
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {LINKS.map((link) => (
-            <Magnetic key={link.id} strength={0.4}>
-              <a
-                href={`/#${link.id}`}
-                onClick={(event) => handleLinkClick(event, link.id)}
-                aria-current={activeId === link.id ? "true" : undefined}
-                className={cn(
-                  "relative py-1 text-xs font-medium uppercase tracking-[0.16em] transition-colors hover:text-glacier",
-                  activeId === link.id ? "text-glacier" : "text-white/60",
+          {LINKS.map((link) => {
+            const active = isActive(link);
+            const className = cn(
+              "relative py-1 text-xs font-medium uppercase tracking-[0.16em] transition-colors hover:text-glacier",
+              active ? "text-glacier" : "text-white/60",
+            );
+            const underline = active && (
+              <motion.span
+                layoutId="nav-active"
+                className="absolute inset-x-0 -bottom-1 h-px bg-glacier"
+                transition={prefersReducedMotion ? { duration: 0 } : undefined}
+              />
+            );
+            return (
+              <Magnetic key={link.label} strength={0.4}>
+                {link.href !== undefined ? (
+                  <Link href={link.href} aria-current={active ? "page" : undefined} className={className}>
+                    {link.label}
+                    {underline}
+                  </Link>
+                ) : (
+                  <a
+                    href={`/#${link.id}`}
+                    onClick={(event) => handleLinkClick(event, link.id)}
+                    aria-current={active ? "true" : undefined}
+                    className={className}
+                  >
+                    {link.label}
+                    {underline}
+                  </a>
                 )}
-              >
-                {link.label}
-                {activeId === link.id && (
-                  <motion.span
-                    layoutId="nav-active"
-                    className="absolute inset-x-0 -bottom-1 h-px bg-glacier"
-                    transition={prefersReducedMotion ? { duration: 0 } : undefined}
-                  />
-                )}
-              </a>
-            </Magnetic>
-          ))}
+              </Magnetic>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">
@@ -174,20 +196,25 @@ export function Nav() {
             className="overflow-hidden border-t border-line md:hidden"
           >
             <ul className="flex flex-col px-6 py-3">
-              {LINKS.map((link) => (
-                <li key={link.id}>
-                  <a
-                    href={`/#${link.id}`}
-                    onClick={(event) => handleLinkClick(event, link.id)}
-                    className={cn(
-                      "block py-3 text-sm font-medium uppercase tracking-[0.16em] transition-colors hover:text-glacier",
-                      activeId === link.id ? "text-glacier" : "text-white/70",
+              {LINKS.map((link) => {
+                const className = cn(
+                  "block py-3 text-sm font-medium uppercase tracking-[0.16em] transition-colors hover:text-glacier",
+                  isActive(link) ? "text-glacier" : "text-white/70",
+                );
+                return (
+                  <li key={link.label}>
+                    {link.href !== undefined ? (
+                      <Link href={link.href} onClick={() => setMenuOpen(false)} className={className}>
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a href={`/#${link.id}`} onClick={(event) => handleLinkClick(event, link.id)} className={className}>
+                        {link.label}
+                      </a>
                     )}
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
+                  </li>
+                );
+              })}
             </ul>
           </motion.nav>
         )}
