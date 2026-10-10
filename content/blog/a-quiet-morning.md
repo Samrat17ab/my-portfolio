@@ -1,6 +1,7 @@
 ---
 title: Notes from a quiet morning
 date: 2026-10-08
+category: personal
 mood: calm
 tags: [mornings, slowing down]
 ---

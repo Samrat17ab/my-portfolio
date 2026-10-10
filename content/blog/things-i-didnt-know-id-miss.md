@@ -1,6 +1,7 @@
 ---
 title: Things I didn't know I'd miss
 date: 2026-09-12
+category: personal
 mood: tender
 tags: [home, distance]
 ---

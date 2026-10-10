@@ -7,7 +7,7 @@ import { Experience } from "@/components/sections/experience";
 import { Leadership } from "@/components/sections/leadership";
 import { ProofOfThinking } from "@/components/sections/proof-of-thinking";
 import { Certifications } from "@/components/sections/certifications";
-import { JournalTeaser } from "@/components/sections/journal-teaser";
+import { BlogTeaser } from "@/components/sections/blog-teaser";
 import { Contact } from "@/components/sections/contact";
 
 const ProjectDeckSection = dynamic(
@@ -29,7 +29,7 @@ export default function Home() {
         <Leadership />
         <ProofOfThinking />
         <Certifications />
-        <JournalTeaser />
+        <BlogTeaser />
         <Contact />
       </main>
     </>

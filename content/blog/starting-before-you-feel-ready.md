@@ -1,6 +1,7 @@
 ---
 title: On starting before you feel ready
 date: 2026-09-27
+category: product
 mood: restless
 tags: [building, work]
 ---

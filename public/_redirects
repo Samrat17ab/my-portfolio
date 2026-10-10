@@ -1,0 +1,3 @@
+# The blog used to live at /journal; keep old links working.
+/journal /blog 301
+/journal/* /blog/:splat 301

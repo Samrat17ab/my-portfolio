@@ -5,8 +5,8 @@ import { Shuffle } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-/** Opens a random entry, never the one you're already on. */
-export function RandomEntryButton({
+/** Opens a random post, never the one you're already on. */
+export function RandomPostButton({
   slugs,
   current,
   className,
@@ -22,14 +22,14 @@ export function RandomEntryButton({
   return (
     <button
       type="button"
-      onClick={() => router.push(`/journal/${pool[Math.floor(Math.random() * pool.length)]}`)}
+      onClick={() => router.push(`/blog/${pool[Math.floor(Math.random() * pool.length)]}`)}
       className={cn(
         "inline-flex min-h-11 items-center gap-2 rounded-full border border-marigold/40 px-5 text-sm font-medium text-marigold transition-colors hover:bg-marigold/10",
         className,
       )}
     >
       <Shuffle className="h-4 w-4" aria-hidden />
-      Read something at random
+      Surprise me
     </button>
   );
 }

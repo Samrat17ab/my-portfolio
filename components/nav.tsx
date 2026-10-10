@@ -14,7 +14,7 @@ import { Menu, X } from "lucide-react";
 
 import { Magnetic } from "@/components/magnetic";
 import { ResumeButton } from "@/components/resume-viewer";
-import { JOURNAL_ENABLED } from "@/lib/journal/config";
+import { BLOG_ENABLED } from "@/lib/blog/config";
 import { cn } from "@/lib/utils";
 
 // `id` links scroll to a homepage section; `href` links go to their own page.
@@ -25,7 +25,7 @@ const LINKS: NavItem[] = [
   { id: "experience", label: "Experience" },
   { id: "leadership", label: "Leadership" },
   { id: "thinking", label: "Thinking" },
-  ...(JOURNAL_ENABLED ? [{ href: "/journal", label: "Journal" }] : []),
+  ...(BLOG_ENABLED ? [{ href: "/blog", label: "Blog" }] : []),
   { id: "contact", label: "Contact" },
 ];
 const SECTION_IDS = LINKS.flatMap((link) => (link.id ? [link.id] : []));

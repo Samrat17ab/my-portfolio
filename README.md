@@ -52,15 +52,16 @@ npm run lint     # eslint
 - `lib/content.ts` — all copy and data, typed and centralized.
 - `lib/motion-math.ts` — the seeded RNG and easing helpers the hero and project deck reuse.
 
-## Journal
+## Blog
 
-A personal journal at `/journal`, switched on or off with one line in `lib/journal/config.ts`
-(`JOURNAL_ENABLED`). When off, the pages show "not found" and the nav link and homepage section
-disappear.
+A blog at `/blog`, switched on or off with one line in `lib/blog/config.ts` (`BLOG_ENABLED`).
+When off, the pages show "not found" and the nav link and homepage section disappear.
 
-To write an entry, copy `content/journal/_template.md` to a new file (the file name becomes the
-URL) and write in Markdown. Keep `draft: true` while writing: drafts appear in `npm run dev` but
-never in a production build.
+To write a post, copy `content/blog/_template.md` to a new file (the file name becomes the URL)
+and write in Markdown. Every post needs a `category`: `product`, `findings`, `wins` or
+`personal` (defined in `lib/blog/taxonomy.ts`). Keep `draft: true` while writing: drafts appear
+in `npm run dev` but never in a production build. Old `/journal` links redirect to `/blog` via
+`public/_redirects`.
 
 ## Deployment
 

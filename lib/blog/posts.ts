@@ -2,25 +2,29 @@ import fs from "node:fs";
 import path from "node:path";
 import { marked } from "marked";
 
-/** Server-only: reads content/journal/*.md at build time. */
+import { CATEGORIES, isCategory, type Category } from "./taxonomy";
 
-export interface JournalEntryMeta {
+/** Server-only: reads content/blog/*.md at build time. */
+
+export interface PostMeta {
   slug: string;
   title: string;
   /** YYYY-MM-DD */
   date: string;
-  mood: string;
+  category: Category;
+  /** Optional; shown on the post when set. */
+  mood?: string;
   tags: string[];
   excerpt: string;
   readingMinutes: number;
   draft: boolean;
 }
 
-export interface JournalEntry extends JournalEntryMeta {
+export interface Post extends PostMeta {
   html: string;
 }
 
-const CONTENT_DIR = path.join(process.cwd(), "content", "journal");
+const CONTENT_DIR = path.join(process.cwd(), "content", "blog");
 // Drafts show while running `npm run dev` and never in a production build.
 const SHOW_DRAFTS = process.env.NODE_ENV !== "production";
 
@@ -42,7 +46,7 @@ function parseValue(raw: string): string | string[] | boolean {
 
 function parseFrontmatter(raw: string, file: string): { data: Frontmatter; body: string } {
   const match = raw.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n?/);
-  if (!match) throw new Error(`Journal entry ${file} needs a frontmatter block between --- lines.`);
+  if (!match) throw new Error(`Blog post ${file} needs a frontmatter block between --- lines.`);
   const data: Frontmatter = {};
   for (const line of match[1].split(/\r?\n/)) {
     if (!line.trim() || line.trim().startsWith("#")) continue;
@@ -82,15 +86,19 @@ function renderMarkdown(body: string): string {
     .replace(/<img /g, '<img loading="lazy" decoding="async" ');
 }
 
-function readEntry(file: string): JournalEntry {
+function readPost(file: string): Post {
   const raw = fs.readFileSync(path.join(CONTENT_DIR, file), "utf8");
   const { data, body } = parseFrontmatter(raw, file);
   const slug = file.replace(/\.md$/, "");
 
   const title = typeof data.title === "string" ? data.title : "";
   const date = typeof data.date === "string" ? data.date : "";
-  if (!title) throw new Error(`Journal entry ${file} is missing a title.`);
-  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error(`Journal entry ${file} needs a date like 2026-10-10.`);
+  const category = typeof data.category === "string" ? data.category.toLowerCase() : "";
+  if (!title) throw new Error(`Blog post ${file} is missing a title.`);
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(date)) throw new Error(`Blog post ${file} needs a date like 2026-10-10.`);
+  if (!isCategory(category)) {
+    throw new Error(`Blog post ${file} needs a category: one of ${Object.keys(CATEGORIES).join(", ")}.`);
+  }
 
   const words = plainText(body).split(" ").filter(Boolean).length;
   const excerpt = typeof data.excerpt === "string" && data.excerpt ? data.excerpt : truncate(firstParagraph(body));
@@ -99,7 +107,8 @@ function readEntry(file: string): JournalEntry {
     slug,
     title,
     date,
-    mood: typeof data.mood === "string" && data.mood ? data.mood : "calm",
+    category,
+    mood: typeof data.mood === "string" && data.mood ? data.mood : undefined,
     tags: Array.isArray(data.tags) ? data.tags : [],
     excerpt,
     readingMinutes: Math.max(1, Math.round(words / 220)),
@@ -108,46 +117,46 @@ function readEntry(file: string): JournalEntry {
   };
 }
 
-function loadAll(): JournalEntry[] {
+function loadAll(): Post[] {
   if (!fs.existsSync(CONTENT_DIR)) return [];
   return fs
     .readdirSync(CONTENT_DIR)
     .filter((f) => f.endsWith(".md") && !f.startsWith("_"))
-    .map(readEntry)
-    .filter((e) => SHOW_DRAFTS || !e.draft)
+    .map(readPost)
+    .filter((p) => SHOW_DRAFTS || !p.draft)
     .sort((a, b) => b.date.localeCompare(a.date) || a.title.localeCompare(b.title));
 }
 
-function toMeta(entry: JournalEntry): JournalEntryMeta {
-  const meta: JournalEntryMeta & { html?: string } = { ...entry };
+function toMeta(post: Post): PostMeta {
+  const meta: PostMeta & { html?: string } = { ...post };
   delete meta.html;
   return meta;
 }
 
-export function getEntries(): JournalEntryMeta[] {
+export function getPosts(): PostMeta[] {
   return loadAll().map(toMeta);
 }
 
-export function getEntry(slug: string): JournalEntry | undefined {
-  return loadAll().find((e) => e.slug === slug);
+export function getPost(slug: string): Post | undefined {
+  return loadAll().find((p) => p.slug === slug);
 }
 
-/** The entries written just after and just before this one. */
-export function getNeighbors(slug: string): { newer?: JournalEntryMeta; older?: JournalEntryMeta } {
-  const all = getEntries();
-  const i = all.findIndex((e) => e.slug === slug);
+/** The posts published just after and just before this one. */
+export function getNeighbors(slug: string): { newer?: PostMeta; older?: PostMeta } {
+  const all = getPosts();
+  const i = all.findIndex((p) => p.slug === slug);
   if (i === -1) return {};
   return { newer: all[i - 1], older: all[i + 1] };
 }
 
-/** Same mood first, then shared tags, excluding the entry and its direct neighbours. */
-export function getRelated(entry: JournalEntryMeta, count = 2): JournalEntryMeta[] {
-  const { newer, older } = getNeighbors(entry.slug);
-  const skip = new Set([entry.slug, newer?.slug, older?.slug]);
-  const score = (e: JournalEntryMeta) =>
-    (e.mood.toLowerCase() === entry.mood.toLowerCase() ? 2 : 0) + e.tags.filter((t) => entry.tags.includes(t)).length;
-  return getEntries()
-    .filter((e) => !skip.has(e.slug) && score(e) > 0)
+/** Same category first, then shared tags, skipping the post and its direct neighbours. */
+export function getRelated(post: PostMeta, count = 3): PostMeta[] {
+  const { newer, older } = getNeighbors(post.slug);
+  const skip = new Set([post.slug, newer?.slug, older?.slug]);
+  const score = (p: PostMeta) =>
+    (p.category === post.category ? 2 : 0) + p.tags.filter((t) => post.tags.includes(t)).length;
+  return getPosts()
+    .filter((p) => !skip.has(p.slug) && score(p) > 0)
     .sort((a, b) => score(b) - score(a))
     .slice(0, count);
 }
